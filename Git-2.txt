@@ -62,5 +62,36 @@ git rm file1.js
 git restore --source=HEAD~1 file1.js
 
 
+-------------------------------------------
+
+*****Pushing content from your machine to GitHub*****
+1) Create a repo, make sure the repo name is same on GitHub and local machine
+2) git remote add origin "Link" // The name of the remote is called origin and it points to the placeholder on the server
+3) git remove -v // To check if it is added correctly
+
+---#Command to push for the first time#---
+4) git push -u origin master//-u is for linking the upstream (Link the master branch of my local repo with the master branch of the server repo)
+
+Pushes to the origin, origin points to the url 
+
+Enter username and PAT
+
+This successfully links master branch of local repo to master branch in server
+
+---------------------------------------------------------------------------
+
+Using SSH
+
+ssh-keygen -t -rsa -C email-id // generates the key
+
+Enter folder //default, created in user home directory 
+Enter passphrase 
+
+Add SSH key in github
+
+*****Cloning files******
+
+
+
 
 
