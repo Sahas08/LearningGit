@@ -1,0 +1,66 @@
+*****Viewing history*****
+
+git log
+OR
+git checkout
+
+git log --oneline //Short descp
+
+git log --oneline --reverse //Reverses the order
+
+
+*****Viewing a commit*****
+
+git log --oneline
+
+git show "unique_identifier"
+        
+May type fewer characters if they aren't same
+
+        OR
+git show HEAD // last commit
+git show HEAD~1 // 1 commit back and so on
+
+
+
+git show HEAD~1:.gitignore
+        OR
+git show HEAD~1:bin/app.bin
+
+This command only shows the differences
+----------------------------------
+
+*****To view exact content*****
+
+git ls-tree HEAD~1
+
+files -> blobs
+directory -> trees
+
+
+*****Unstaging files*****
+
+git restore --staged file2.js
+
+*****Discarding local changes*****
+
+git restore . // Undo all local changes, copies file staging area-> working directory
+
+git status -s // Untracked file remains
+
+git clean // Remove all untracked files
+
+git clean -h //Help
+
+git clean -fd //Removes untracked file
+
+
+*****Restoring files from commit*****
+
+git rm file1.js
+
+git restore --source=HEAD~1 file1.js
+
+
+
+
