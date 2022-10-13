@@ -1,0 +1,269 @@
+-------------------------------------
+
+To install .deb file -
+sudo apt install *.deb
+       OR
+sudo dpkg -i *.deb
+
+-------------------------------------
+
+git --version //tells the version
+
+mkdir Moon // Make a folder to store files
+git init // initializes the repository
+
+repository -> A folder to store files 
+
+open .git // opens directories, here git stores information
+
+ls -a // shows the .git file
+
+(rm .git // doesn't work)
+rm -rf .git // removes the git file
+
+git init // reinitializes the file
+
+creating commit -> Taking a snapshot of a project
+
+staging area -> stores things that we want to commit
+
+When we commit changes, the staging area doesn't become empty. 
+
+git add file2 // It transfer the change in file2 to the staging area.
+
+// If we delete file2, we will write git add file2 to delete in the staging area.
+
+***Adding files***
+
+echo hello > file1.txt
+echo hello > file2.txt
+
+git status // check the status of working directory and the staging area
+--->untracked files<---
+
+git add file1.txt file2.txt
+OR
+git add *.txt
+OR
+git add . //Adds the whole directory recursively 
+
+git status 
+--->Changes to be committed<---
+
+echo world >> file1.txt // 2 '>' signs means "append"
+
+git status
+--->Changes to be committed<---
+--->Modified files<---
+
+We have 2nd version of file1 in the directory but 1st version in the staging area.
+
+git add file1.txt
+
+git status 
+--->Changes to be committed<---
+
+git commit // opens default editor to store a long message
+
+/*
+"Short Description" <80 characters
+
+"Long Description"
+#
+#
+#
+*/
+
+git commit -m "Initial commmit." // -m for message
+This sends the files to the repository.
+
+Working directory content = Staging area content = Last commit
+
+# - Don't commit too much
+# - Don't commit too less
+# - Good message
+# - Use past tense (Fixed the bug)
+
+
+*****Skipping the staging area*****
+
+echo test >> file1.txt
+
+git commit -a -m "Fixed the bug." // -a -> all 
+	OR
+git commit -am "Fixed the bug."
+
+
+*****Removing files*****
+
+rm file2.txt // Removes file 2
+
+git ls-files // Shows files in the staging area
+(Both file1 and file2)
+
+git add file2.txt //Removes file2 from staging area
+
+git ls-files
+(Only file1.txt)
+
+git status
+--->Changes to be committed<---
+---> Deleted file2.txt<---
+
+git commit -m "Removed unused code."
+
+******Removing files from directory and staging area at once*****
+
+git rm file2.txt 
+	OR
+git rm *.txt
+
+***** Renaming files and Moving files*****
+touch file.txt
+mv file.txt main.js // Renaming file1.txt -> main.js
+
+git add main.js
+
+git status
+
+***** Renaming files in Git*****
+
+git mv main.js file1.js // Renaming main.js -> file1.js in directory and staging area
+
+git commit -m "Refactored code."
+
+0insertions -> No new lines in any files
+0deletions -> Didn't delete any lines in old files
+
+*****Ignoring files*****
+
+mkdir logs
+echo hello > logs/dev.log
+
+git status
+--->Changes to be committed<---
+--->Untracked file<---
+
+### special file -> .gitignore (no name only extension, should be in root of project)
+
+echo logs/ > .gitignore
+
+code .gitignore // Opening .gitignore with vscode
+
+git status 
+--->Changes to be committed<---
+.gitignore
+
+git add .gitignore
+
+git commit -m "Added gitignore"
+
+###If you have inserted file in repo already, then add in .gitignore, git won't ignore it.
+
+***Example***
+
+mkdir bin
+echo Hello > bin/app.bin
+git status
+--->Changes to be committed<---
+--->Untracted files<---
+
+git add .
+git commit -m "Added bin."
+
+Now git will track all the changes in bin
+
+To fix this remove bin file from staging area
+
+git rm -h // Opens git rm command help
+# Index -> Old term for staging area
+
+git ls-files
+#.gitignore
+#bin/app.bin
+#file1.js
+
+git rm --cached bin/app.bin //Removes from staging area
+	OR
+git rm --cached -r bin/
+
+git status
+
+git add.
+
+git commit -m "Removed the bin directory"
+
+*************************************************************
+Search more to ignore files like java compiling running files
+*************************************************************
+
+*****Short status*****
+
+echo sky >> file1.js 
+echo sky >> file2.js 
+
+git status // Wordy output
+
+git status -s 
+
+Column-1      Column-2
+(Staging      (Working
+Area)	      Directory)
+
+Red M - Modified in working directory
+Green M - Modified changes added to staging area
+?? - Not added to staging area
+MM - Some changes in working directory to the file in staging area
+
+*****Reviewing files in staging area*****
+git diff --staged 
+
+git diff // Shows what we have in working directory and staging area
+#No output means all changes added
+
+touch file.txt
+echo hello > file.txt
+echo "How are you?" > file.txt
+
+git status -s // Shows some changes
+
+git diff
+
+a -> Old file
+b -> New file
+red -> Contents of old file
+green -> Contents of new file
+--- -> Changes in old file
++++ -> Changes in new file
+
+*****Setting visual tool*****
+
+git config --global diff.tool vscode //Giving name "vscode" to default diff tool
+git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE" //Telling how to run vscode in cmd with different arguments
+
+git config --global -e // Edit global config settings in default editor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
